@@ -11,6 +11,7 @@ var listSchema = new mongoose.Schema({
         required: true
     },
     items: [{
+        _id:false,
         id: String,
         description: String
     }],
