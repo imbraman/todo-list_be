@@ -26,7 +26,6 @@ module.exports.update = function (req, res) {
             "message": "UnauthorizedError: private method"
         });
     } else {
-        console.log(req.body);
         List.findByIdAndUpdate(req.body.id, {
             items: req.body.items,
             lastModified: new Date()
@@ -43,8 +42,8 @@ module.exports.get = function (req, res) {
             "message": "UnauthorizedError: private method"
         });
     } else {
-        const id = req.params.id;
-        List.findOne({user: req.payload._id}, function (err, list) {
+        const listDay = req.query.listDay;
+        List.findOne({user: req.payload._id, listDay: listDay}, function (err, list) {
             if (err) return console.log(err);
             res.send(list);
         });
